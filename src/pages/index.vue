@@ -1,8 +1,8 @@
 <template>
-  <div>home</div>
   <el-button type="primary">Primary</el-button>
-  <el-button type="success">Success</el-button>
   <Icon icon="mdi:home" class="text-sky text-3xl"></Icon>
+  <NetIcon url="//at.alicdn.com/t/font_1791095_hy6b9xbrdsk.css" type="kefu"></NetIcon>
+  <IconfontIcon type="kefu"></IconfontIcon>
 </template>
 
 <script setup lang="ts">
