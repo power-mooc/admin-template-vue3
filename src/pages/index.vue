@@ -4,6 +4,7 @@
   <NetIcon url="//at.alicdn.com/t/font_1791095_hy6b9xbrdsk.css" type="kefu"></NetIcon>
   <IconfontIcon type="kefu"></IconfontIcon>
   <IconPicker></IconPicker>
+  <Iconify icon="bx:arrow-to-top"></Iconify>
 </template>
 
 <script setup lang="ts">

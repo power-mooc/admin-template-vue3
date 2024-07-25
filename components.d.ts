@@ -15,6 +15,7 @@ declare module 'vue' {
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     Iconfont: (typeof import('./src/components/iconfont.vue'))['default']
     IconfontIcon: typeof import('./src/components/Icon/IconfontIcon.vue')['default']
+    Iconify: typeof import('./src/components/Icon/Iconify.vue')['default']
     IconList: typeof import('./src/components/Icon/IconList.vue')['default']
     IconPicker: typeof import('./src/components/Icon/IconPicker.vue')['default']
     NetIcon: typeof import('./src/components/Icon/NetIcon.vue')['default']
