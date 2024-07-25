@@ -49,12 +49,12 @@ export default defineConfig({
         VueRouterAutoImports,
         '@vueuse/core'
       ],
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver()]
     }),
     Components({
-      directoryAsNamespace: true,
+      directoryAsNamespace: false,
       collapseSamePrefixes: true,
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver()]
     }),
     Layouts({
       layoutsDirs: 'src/layouts',
