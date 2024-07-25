@@ -8,8 +8,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
+    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     Iconfont: (typeof import('./src/components/iconfont.vue'))['default']
     IconfontIcon: typeof import('./src/components/IconfontIcon.vue')['default']
+    IconList: typeof import('./src/components/IconList.vue')['default']
     NetIcon: typeof import('./src/components/NetIcon.vue')['default']
     ReloadPrompt: typeof import('./src/components/ReloadPrompt.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

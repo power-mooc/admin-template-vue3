@@ -3,6 +3,7 @@
   <Icon icon="mdi:home" class="text-sky text-3xl"></Icon>
   <NetIcon url="//at.alicdn.com/t/font_1791095_hy6b9xbrdsk.css" type="kefu"></NetIcon>
   <IconfontIcon type="kefu"></IconfontIcon>
+  <IconList></IconList>
 </template>
 
 <script setup lang="ts">
