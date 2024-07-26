@@ -14,6 +14,7 @@ declare module 'vue' {
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElSlider: typeof import('element-plus/es')['ElSlider']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
+    FullScreen: typeof import('./src/components/Themes/FullScreen.vue')['default']
     Iconfont: (typeof import('./src/components/iconfont.vue'))['default']
     IconfontIcon: typeof import('./src/components/Icon/IconfontIcon.vue')['default']
     Iconify: typeof import('./src/components/Icon/Iconify.vue')['default']

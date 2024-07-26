@@ -3,6 +3,7 @@
   <IconfontIcon type="kefu"></IconfontIcon>
   <IconPicker></IconPicker>
   <DarkModeToggle></DarkModeToggle>
+  <FullScreen></FullScreen>
 </template>
 
 <script setup lang="ts">

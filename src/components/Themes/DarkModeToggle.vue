@@ -5,10 +5,11 @@
     :active-action-icon="Moon"
     :inactive-action-icon="Sun"
   />
-  <div>{{ preferredDark }}</div>
 </template>
 
 <script setup lang="tsx">
+// document.documentElement.requestFullscreen();
+
 const props = defineProps({
   dark: Boolean
 });
