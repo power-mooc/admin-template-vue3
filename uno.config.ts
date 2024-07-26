@@ -5,6 +5,7 @@ import { presetWind, presetIcons } from 'unocss'
 
 export default defineConfig({
   presets: [
+    // wind preset
     presetWind(),
     presetIcons({
       prefix: 'i-',
