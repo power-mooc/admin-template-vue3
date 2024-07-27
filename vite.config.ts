@@ -1,23 +1,25 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
+import path from 'path';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 // import VueMacros from 'unplugin-vue-macros'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
-import { VueRouterAutoImports } from 'unplugin-vue-router'
+import { VueRouterAutoImports } from 'unplugin-vue-router';
 
-import VueRouter from 'unplugin-vue-router/vite'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import Layouts from 'vite-plugin-vue-layouts'
-import UnoCSS from 'unocss/vite'
+import VueRouter from 'unplugin-vue-router/vite';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import Layouts from 'vite-plugin-vue-layouts';
+import UnoCSS from 'unocss/vite';
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
 
-import { VitePWA } from 'vite-plugin-pwa'
+import { VitePWA } from 'vite-plugin-pwa';
 
-import { viteMockServe } from 'vite-plugin-mock'
+import { viteMockServe } from 'vite-plugin-mock';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,13 +27,6 @@ export default defineConfig({
     VueRouter(),
     vue(),
     vueJsx(),
-    // Vue3.3以后，不需要这些新的特性了
-    // VueMacros.vite({
-    //   plugins: {
-    //     vue: vue(),
-    //     vueJsx: vueJsx() // 如果需要
-    //   }
-    // }),
     UnoCSS(),
     AutoImport({
       include: [
@@ -43,7 +38,6 @@ export default defineConfig({
 
       // global imports to register
       imports: [
-        // presets
         'vue',
         // 'vue-router'
         VueRouterAutoImports,
@@ -94,6 +88,9 @@ export default defineConfig({
     viteMockServe({
       mockPath: 'mock',
       enable: false
+    }),
+    VueI18nPlugin({
+      include: path.resolve(__dirname, './locales/**')
     })
   ],
   resolve: {
@@ -101,4 +98,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   }
-})
+});

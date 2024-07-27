@@ -4,11 +4,20 @@
   <IconPicker></IconPicker>
   <DarkModeToggle></DarkModeToggle>
   <FullScreen></FullScreen>
+  <div>{{ $t('hello') }}</div>
+  <select v-model="locale">
+    <option value="en">en</option>
+    <option value="zh-CN">zh-CN</option>
+  </select>
 </template>
 
 <script setup lang="ts">
+import { loadLocaleMessages } from '@/modules/i18n';
 import { registerSW } from 'virtual:pwa-register';
-
+const locale = ref('zh-CN');
+watch([locale], () => {
+  loadLocaleMessages(locale.value);
+});
 onMounted(() => {
   registerSW({
     immediate: true,
