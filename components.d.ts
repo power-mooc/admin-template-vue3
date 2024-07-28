@@ -9,13 +9,11 @@ declare module 'vue' {
   export interface GlobalComponents {
     DarkModeToggle: typeof import('./src/components/Themes/DarkModeToggle.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElSlider: typeof import('element-plus/es')['ElSlider']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     FullScreen: typeof import('./src/components/Themes/FullScreen.vue')['default']
-    Iconfont: (typeof import('./src/components/iconfont.vue'))['default']
     IconfontIcon: typeof import('./src/components/Icon/IconfontIcon.vue')['default']
     Iconify: typeof import('./src/components/Icon/Iconify.vue')['default']
     IconList: typeof import('./src/components/Icon/IconList.vue')['default']

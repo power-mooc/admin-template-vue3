@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from 'node:url';
 import path from 'path';
+import fs from 'fs';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -21,8 +22,30 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 import { viteMockServe } from 'vite-plugin-mock';
 
+function externalElementPlusLocales(id: string) {
+  // return true -> external, false -> not external
+  const localesDir = path.resolve(__dirname, 'locales');
+  const localesFiles = fs
+    .readdirSync(localesDir)
+    .map((file) => file.match(/([\w-]+)\.json/)?.[1] || '');
+
+  if (id.includes('element-plus/dist/locale')) {
+    // 获取 id 的basename
+    // 判断这个basename在不在上面的localesFiles中
+    const basename = path.basename(id, '.mjs');
+    return !localesFiles.some((o) => o.toLowerCase() === basename);
+  }
+  // 其他的外部依赖
+  return false;
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      external: (id) => externalElementPlusLocales(id)
+    }
+  },
   plugins: [
     VueRouter(),
     vue(),
