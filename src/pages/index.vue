@@ -5,6 +5,7 @@
   <DarkModeToggle></DarkModeToggle>
   <FullScreen></FullScreen>
   <div>{{ $t('hello') }}</div>
+  {{ $t('el.colorpicker.confirm') }}
   <select v-model="locale">
     <option value="en">en</option>
     <option value="zh-CN">zh-CN</option>
