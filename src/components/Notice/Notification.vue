@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import type { IconifyIcon } from '@iconify/vue';
-import Icon from '../Icon/Iconfiy.vue';
+import Icon from '../Icon/Iconify.vue';
 import type { BadgeProps } from 'element-plus';
 
 interface NotificationProps extends Partial<BadgeProps> {

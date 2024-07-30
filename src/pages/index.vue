@@ -5,6 +5,12 @@
 <script setup lang="ts">
 import { registerSW } from 'virtual:pwa-register';
 import type { AppRouteMenuItem } from '@/components/Menu/types';
+definePage({
+  meta: {
+    title: '首页',
+    icon: 'mdi:home'
+  }
+});
 const data: AppRouteMenuItem[] = [
   {
     name: 'Home',

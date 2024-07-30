@@ -5,7 +5,7 @@
     <template #title v-if="!data.meta?.icon">{{ data.meta?.title }}</template>
     <!-- 折叠,侧栏  -->
     <template #title v-else>
-      <Iconfiy :icon="data.meta?.icon || ''"></Iconfiy>
+      <Iconify :icon="data.meta?.icon || ''"></Iconify>
       <span>{{ data.meta?.title }}</span>
     </template>
     <!-- data应该是子菜单的data -->
