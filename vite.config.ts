@@ -58,7 +58,6 @@ export default defineConfig({
         /\.vue\?vue/, // .vue
         /\.md$/ // .md
       ],
-
       // global imports to register
       imports: [
         'vue',
@@ -66,7 +65,9 @@ export default defineConfig({
         VueRouterAutoImports,
         '@vueuse/core'
       ],
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver()],
+      // Auto import inside Vue template
+      vueTemplate: true
     }),
     Components({
       directoryAsNamespace: false,

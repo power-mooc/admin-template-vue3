@@ -18,7 +18,6 @@ import type { MenuProps as ElMenuProps, MenuItemClicked, SubMenuProps } from 'el
 import type { AppRouteMenuItem } from './types';
 import { useMenu } from './useMenu';
 import type { NavigationFailure } from 'vue-router';
-import { isDefined } from '@vueuse/core';
 
 interface MenuProps extends Partial<ElMenuProps> {
   data: AppRouteMenuItem[];

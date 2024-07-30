@@ -5,7 +5,7 @@
     <template #title v-if="!data.meta?.icon">{{ data.meta?.title }}</template>
     <!-- 折叠,侧栏  -->
     <template #title v-else>
-      <Iconify :icon="data.meta?.icon || ''"></Iconify>
+      <Iconfiy :icon="data.meta?.icon || ''"></Iconfiy>
       <span>{{ data.meta?.title }}</span>
     </template>
     <!-- data应该是子菜单的data -->
@@ -27,11 +27,11 @@ interface SubMenuProps extends Partial<ElSubMenuProps> {
   data: AppRouteMenuItem;
   collapse?: boolean;
 }
-
 const props = defineProps<SubMenuProps>();
 const { getIndex, menuHasChildren } = useMenu();
 
 const subAttrs = computed(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data, ...restProps } = props;
   return restProps;
 });

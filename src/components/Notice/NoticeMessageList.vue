@@ -69,7 +69,7 @@
 <script setup lang="tsx">
 import type { AvatarProps, TabsPaneContext } from 'element-plus';
 
-import Iconify from '../Icon/Iconify.vue';
+import Iconify from '../Icon/Iconfiy.vue';
 import type { NoticeMessageListProps, MessageListItem } from './types';
 
 const props = defineProps<NoticeMessageListProps>();

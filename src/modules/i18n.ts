@@ -17,7 +17,7 @@ const localesMap = Object.fromEntries(
     loadLocale
   ])
 ) as Record<Locale, () => Promise<{ default: Record<string, string> }>>;
-localesMap['zh-CN']().then((res) => console.log(res.default));
+localesMap['zh-CN']().then(() => {});
 
 // 思路一：过滤部分不相关的.mjs的locales文件
 // 思路二：动态的匹配vite glob内容 -> 不太可能
