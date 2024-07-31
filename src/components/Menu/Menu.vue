@@ -1,5 +1,11 @@
 <template>
-  <el-menu v-bind="menuProps" @select="handleSelect" @open="handleOpen" @close="handleClose">
+  <el-menu
+    :style="{ '--bg-color': backgroundColor }"
+    v-bind="menuProps"
+    @select="handleSelect"
+    @open="handleOpen"
+    @close="handleClose"
+  >
     <slot name="icon"></slot>
     <!-- 左右Logo +菜单的情况 -->
     <div class="flex-grow" v-if="isDefined(slots['icon'])" />
@@ -41,7 +47,8 @@ const props = withDefaults(defineProps<MenuProps>(), {
       fontSize: '22px'
     },
     class: 'mr-3'
-  })
+  }),
+  backgroundColor: 'transparent'
 });
 provide('iconProps', props.iconProps);
 

@@ -4,7 +4,7 @@
     <!-- sidebar -->
     <div
       :style="{ width: menuWidth + 'px', backgroundColor: settings?.backgroundColor }"
-      class="h-full"
+      class="h-full bg-sky"
     >
       <el-scrollbar>
         <!-- menu -->
