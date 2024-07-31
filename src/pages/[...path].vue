@@ -2,7 +2,13 @@
   <div>Not Found</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePage({
+  meta: {
+    hideMenu: true
+  }
+});
+</script>
 
 <style scoped></style>
 

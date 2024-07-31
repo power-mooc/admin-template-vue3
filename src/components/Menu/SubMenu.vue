@@ -5,7 +5,11 @@
     <template #title v-if="!data.meta?.icon">{{ data.meta?.title }}</template>
     <!-- 折叠,侧栏  -->
     <template #title v-else>
-      <Iconify :icon="data.meta?.icon || ''"></Iconify>
+      <Iconify
+        :icon="data.meta?.icon || ''"
+        :style="iconProps?.style"
+        :class="iconProps.class"
+      ></Iconify>
       <span>{{ data.meta?.title }}</span>
     </template>
     <!-- data应该是子菜单的data -->
@@ -20,7 +24,7 @@
 
 <script setup lang="ts">
 import type { SubMenuProps as ElSubMenuProps } from 'element-plus';
-import type { AppRouteMenuItem } from './types';
+import type { AppRouteMenuItem, IconOptions } from './types';
 import { useMenu } from './useMenu';
 
 interface SubMenuProps extends Partial<ElSubMenuProps> {
@@ -35,6 +39,8 @@ const subAttrs = computed(() => {
   const { data, ...restProps } = props;
   return restProps;
 });
+
+const iconProps = inject('iconProps') as IconOptions;
 </script>
 
 <style scoped></style>

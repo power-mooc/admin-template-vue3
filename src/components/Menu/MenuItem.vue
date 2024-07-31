@@ -6,20 +6,20 @@
   <template v-else>
     <!-- 折叠 -->
     <el-menu-item v-if="collapse" :index="getIndex(data)" :disabled="data.meta?.disabled">
-      <Iconify :icon="data.meta?.icon"></Iconify>
+      <Iconify :icon="data.meta?.icon" :style="iconProps?.style" :class="iconProps.class"></Iconify>
       <template #title>{{ data.meta?.title }}</template>
     </el-menu-item>
     <!-- 侧栏 -->
     <el-menu-item v-else :index="getIndex(data)" :disabled="data.meta?.disabled">
-      <Iconify :icon="data.meta?.icon"></Iconify>
-      <span>{{ data.meta?.title }}</span>
+      <Iconify :icon="data.meta?.icon" :style="iconProps?.style" :class="iconProps.class"></Iconify>
+      <span>{{ data.meta?.title }} </span>
     </el-menu-item>
     <!-- item end -->
   </template>
 </template>
 
 <script setup lang="ts">
-import type { AppRouteMenuItem } from './types';
+import type { AppRouteMenuItem, IconOptions } from './types';
 import { useMenu } from './useMenu';
 
 interface MenuItemProps {
@@ -28,6 +28,8 @@ interface MenuItemProps {
 }
 
 defineProps<MenuItemProps>();
+const iconProps = inject('iconProps') as IconOptions;
+console.log(iconProps);
 
 const { getIndex } = useMenu();
 </script>

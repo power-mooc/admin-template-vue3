@@ -15,13 +15,15 @@
 
 <script setup lang="ts">
 import type { MenuProps as ElMenuProps, MenuItemClicked, SubMenuProps } from 'element-plus';
-import type { AppRouteMenuItem } from './types';
+import type { AppRouteMenuItem, IconOptions } from './types';
 import { useMenu } from './useMenu';
 import type { NavigationFailure } from 'vue-router';
 
+// 菜单组件props类型
 interface MenuProps extends Partial<ElMenuProps> {
   data: AppRouteMenuItem[];
   subMenuProps?: Partial<SubMenuProps>;
+  iconProps?: Partial<IconOptions>;
 }
 
 type EmitSelectType = [
@@ -33,8 +35,15 @@ type EmitSelectType = [
 type OpenCloseType = [index: string, indexPath: string[]];
 
 const props = withDefaults(defineProps<MenuProps>(), {
-  data: () => []
+  data: () => [],
+  iconProps: () => ({
+    style: {
+      fontSize: '22px'
+    },
+    class: 'mr-3'
+  })
 });
+provide('iconProps', props.iconProps);
 
 const emits = defineEmits<{
   select: EmitSelectType;

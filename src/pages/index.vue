@@ -5,6 +5,7 @@
 <script setup lang="ts">
 import { registerSW } from 'virtual:pwa-register';
 import type { AppRouteMenuItem } from '@/components/Menu/types';
+// 自动路由方法
 definePage({
   meta: {
     title: '首页',
