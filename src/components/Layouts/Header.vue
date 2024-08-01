@@ -88,11 +88,11 @@ watch(
 // 获取菜单设置
 const handleChange = (settings: ThemeSettingsProps) => {
   localProps.settings = settings;
-  // emits('settingsChange', localProps.settings)
+  // emits('settingsChange', localProps.settings);
 };
 const handleDarkModeToggle = (dark: boolean) => {
   localProps.settings!.darkMode = dark;
-  // emits('settingsChange', localProps.settings!)
+  // emits('settingsChange', localProps.settings!);
 };
 </script>
 

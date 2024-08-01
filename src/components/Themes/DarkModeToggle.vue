@@ -9,7 +9,7 @@
 
 <script setup lang="tsx">
 // document.documentElement.requestFullscreen();
-
+const emits = defineEmits(['change']);
 const props = defineProps({
   dark: Boolean
 });
@@ -28,6 +28,7 @@ const toggleMode = (flag: boolean) => {
 };
 watch([isDark], () => {
   toggleMode(isDark.value);
+  emits('change', isDark);
 });
 
 // 跟随系统

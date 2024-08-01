@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { registerSW } from 'virtual:pwa-register';
+// import { registerSW } from 'virtual:pwa-register';
 definePage({
   meta: {
     title: '首页',
@@ -11,16 +11,16 @@ definePage({
   }
 });
 
-onMounted(() => {
-  registerSW({
-    immediate: true,
-    onRegisteredSW(_url, registration) {
-      setInterval(() => {
-        registration && registration.update();
-      }, 3600000);
-    }
-  });
-});
+// onMounted(() => {
+//   registerSW({
+//     immediate: true,
+//     onRegisteredSW(_url, registration) {
+//       setInterval(() => {
+//         registration && registration.update();
+//       }, 3600000);
+//     }
+//   });
+// });
 </script>
 
 <style scoped></style>
