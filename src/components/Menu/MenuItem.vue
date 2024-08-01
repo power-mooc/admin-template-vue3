@@ -29,7 +29,6 @@ interface MenuItemProps {
 
 defineProps<MenuItemProps>();
 const iconProps = inject('iconProps') as IconOptions;
-console.log(iconProps);
 
 const { getIndex } = useMenu();
 </script>

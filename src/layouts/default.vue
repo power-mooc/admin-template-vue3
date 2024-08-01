@@ -4,7 +4,7 @@
     <!-- sidebar -->
     <div
       :style="{ width: menuWidth + 'px', backgroundColor: settings?.backgroundColor }"
-      class="h-full bg-sky"
+      class="h-full"
     >
       <el-scrollbar>
         <!-- menu -->
@@ -20,6 +20,7 @@
         :username="username"
         :src="avatar"
         :data="avatarMenu"
+        v-model:collapse="localSettings.collapse"
         :settings="settings"
         @settings-change="handleSettigsChange"
       ></Header>
