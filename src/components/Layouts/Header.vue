@@ -56,12 +56,11 @@ import type { HeaderProps } from './types';
 const props = withDefaults(defineProps<HeaderProps>(), {
   collapse: false
 });
+const localProps = reactive({ ...props });
 
 const collapseModel = defineModel('collapse', {
   default: false
 });
-
-const localProps = reactive({ ...props });
 
 const emits = defineEmits<{
   menuChange: [arg: string | number | object];

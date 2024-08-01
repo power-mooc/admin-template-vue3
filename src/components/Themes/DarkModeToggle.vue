@@ -26,10 +26,18 @@ const toggleMode = (flag: boolean) => {
     document.documentElement.classList.remove('dark');
   }
 };
-watch([isDark], () => {
-  toggleMode(isDark.value);
-  emits('change', isDark);
-});
+watch(
+  [isDark],
+  () => {
+    nextTick(() => {
+      toggleMode(isDark.value);
+      emits('change', isDark);
+    });
+  },
+  {
+    immediate: true
+  }
+);
 
 // 跟随系统
 watch([preferredDark], () => {
