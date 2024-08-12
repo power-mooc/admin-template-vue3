@@ -23,7 +23,7 @@
 import type { NoticeActionsItem, NoticeMessageListOptions } from '@/components/Notice/types';
 definePage({
   meta: {
-    title: '消息通知',
+    title: 'page.noticeMessage',
     icon: 'mdi:message'
   }
 });

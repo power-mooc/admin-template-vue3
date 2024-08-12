@@ -1,3 +1,10 @@
 {
-  "hello": "你好"
+  "hello": "你好",
+  "page": {
+    "index": "首页",
+    "about": "关于我们",
+    "components": "组件示例",
+    "notice": "通知示例",
+    "noticeMessage": "消息通知"
+  }
 }

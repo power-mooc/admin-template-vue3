@@ -2,15 +2,15 @@
   <MenuItem :data="data" :collapse="collapse" v-if="!menuHasChildren(data)"></MenuItem>
   <!-- 有下拉菜单 -->
   <el-sub-menu :index="getIndex(data)" v-if="menuHasChildren(data)">
-    <template #title v-if="!data.meta?.icon">{{ data.meta?.title }}</template>
+    <template #title v-if="!data.meta?.icon">{{ $t(data.meta?.title || '') }}</template>
     <!-- 折叠,侧栏  -->
     <template #title v-else>
       <Iconify
         :icon="data.meta?.icon || ''"
         :style="iconProps?.style"
-        :class="iconProps.class"
+        :class="iconProps?.class"
       ></Iconify>
-      <span>{{ data.meta?.title }}</span>
+      <span>{{ $t(data.meta?.title || '') }}</span>
     </template>
     <!-- data应该是子菜单的data -->
     <SubMenu
@@ -25,22 +25,23 @@
 <script setup lang="ts">
 import type { SubMenuProps as ElSubMenuProps } from 'element-plus';
 import type { AppRouteMenuItem, IconOptions } from './types';
+import Iconify from '../Icon/Iconify.vue';
 import { useMenu } from './useMenu';
 
 interface SubMenuProps extends Partial<ElSubMenuProps> {
   data: AppRouteMenuItem;
   collapse?: boolean;
 }
+
 const props = defineProps<SubMenuProps>();
 const { getIndex, menuHasChildren } = useMenu();
 
+const iconProps = inject('iconProps') as IconOptions;
+
 const subAttrs = computed(() => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data, ...restProps } = props;
   return restProps;
 });
-
-const iconProps = inject('iconProps') as IconOptions;
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

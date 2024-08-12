@@ -7,6 +7,8 @@ const i18n = createI18n({
   messages: {}
 });
 
+export const $t: typeof i18n.global.t = i18n.global.t;
+
 const localesMap = Object.fromEntries(
   // import.meta.globa -> filename: ./locale/en.js: () => import(./locale/en.js)
   // -> [./locale/en.js: () => import(./locale/en.js] => ['en', () => import('./locale/en.js')]

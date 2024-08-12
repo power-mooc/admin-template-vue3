@@ -6,7 +6,7 @@
 // import { registerSW } from 'virtual:pwa-register';
 definePage({
   meta: {
-    title: '首页',
+    title: 'page.index',
     icon: 'mdi:home'
   }
 });

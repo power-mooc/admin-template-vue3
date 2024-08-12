@@ -1,7 +1,8 @@
 <template>
   <el-menu
-    :style="{ '--bg-color': backgroundColor }"
     v-bind="menuProps"
+    :style="{ '--bg-color': backgroundColor }"
+    class="border-r-0!"
     @select="handleSelect"
     @open="handleOpen"
     @close="handleClose"
@@ -25,12 +26,31 @@ import type { AppRouteMenuItem, IconOptions } from './types';
 import { useMenu } from './useMenu';
 import type { NavigationFailure } from 'vue-router';
 
-// 菜单组件props类型
 interface MenuProps extends Partial<ElMenuProps> {
   data: AppRouteMenuItem[];
   subMenuProps?: Partial<SubMenuProps>;
   iconProps?: Partial<IconOptions>;
 }
+
+const props = withDefaults(defineProps<MenuProps>(), {
+  data: () => [],
+  iconProps: () => ({
+    style: { fontSize: '22px' },
+    class: 'mr-3'
+  }),
+  backgroundColor: 'transparent'
+});
+
+const iconProps = reactive(props.iconProps);
+
+watch(
+  () => props.collapse,
+  () => {
+    iconProps.class = props.collapse ? '' : 'mr-3';
+  }
+);
+
+provide('iconProps', iconProps);
 
 type EmitSelectType = [
   index: string,
@@ -39,18 +59,6 @@ type EmitSelectType = [
   routerResult?: Promise<void | NavigationFailure>
 ];
 type OpenCloseType = [index: string, indexPath: string[]];
-
-const props = withDefaults(defineProps<MenuProps>(), {
-  data: () => [],
-  iconProps: () => ({
-    style: {
-      fontSize: '22px'
-    },
-    class: 'mr-3'
-  }),
-  backgroundColor: 'transparent'
-});
-provide('iconProps', props.iconProps);
 
 const emits = defineEmits<{
   select: EmitSelectType;
@@ -77,6 +85,15 @@ const handleOpen = (...args: OpenCloseType) => {
 const handleClose = (...args: OpenCloseType) => {
   emits('close', ...args);
 };
+console.log(fileredMenus);
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.el-menu--vertical .el-sub-menu__title {
+  padding-right: 0 !important;
+}
+
+.el-menu--horizontal.el-menu {
+  border-bottom: 0 !important;
+}
+</style>

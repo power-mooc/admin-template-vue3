@@ -4,7 +4,7 @@
     class="text-xl mr-3 cursor-pointer"
     @click="drawer = true"
   ></Iconify>
-  <el-drawer v-model="drawer" title="主题设置" @open="handleOpen" @close="handleClose">
+  <el-drawer v-model="drawer" title="主题设置" @close="handleClose">
     <el-form :model="form" label-position="left">
       <!-- 主题颜色 -->
       <el-form-item label="主题颜色">

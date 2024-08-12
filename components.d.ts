@@ -13,7 +13,7 @@ declare module 'vue' {
     DropDown: typeof import('./src/components/Menu/DropDown.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBadge: (typeof import('element-plus/es'))['ElBadge']
-    ElButton: (typeof import('element-plus/es'))['ElButton']
+    ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: (typeof import('element-plus/es'))['ElCol']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElDialog: (typeof import('element-plus/es'))['ElDialog']

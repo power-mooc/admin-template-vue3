@@ -1,34 +1,26 @@
 <template>
-  <el-dropdown trigger="click" @command="handleCommand">
-    <slot name="header">
-      <span class="el-dropdown-link">
-        <Iconify icon="ion:language" :class="iconClass" v-bind="$attrs"></Iconify>
+  <DropDown
+    :items="locales"
+    @change="handleCommand"
+    :icon-props="iconPropsComputed"
+    :icon-class="iconClass"
+    v-model="current"
+  >
+    <template #header>
+      <span class="mr-2">
+        <Iconify icon="ion:language" :class="iconClass" v-bind="iconPropsComputed"></Iconify>
       </span>
-    </slot>
-    <template #dropdown>
-      <el-dropdown-menu>
-        <el-dropdown-item v-for="(locale, index) in locales" :key="index" :command="locale.name">
-          <!-- method 3 -->
-          <div class="flex items-center">
-            <Iconify
-              v-if="locale.icon"
-              :icon="locale.icon"
-              v-bind="iconPropsComputed"
-              class="mr-2"
-              :class="iconClass"
-            ></Iconify>
-            {{ locale.text }}
-          </div>
-        </el-dropdown-item>
-      </el-dropdown-menu>
     </template>
-  </el-dropdown>
+    <template #item="{ item }">
+      {{ item.text }}
+    </template>
+  </DropDown>
 </template>
 
 <script setup lang="ts">
+import DropDown from '../Menu/DropDown.vue';
 import type { IconProps } from '@iconify/vue';
 import type { LocaleItem } from './types';
-import Iconify from '../Icon/Iconify.vue';
 
 interface ChangeLocaleProps extends Partial<IconProps> {
   locales: LocaleItem[];
@@ -39,8 +31,10 @@ const props = withDefaults(defineProps<ChangeLocaleProps>(), {
   iconClass: 'text-xl'
 });
 
+const current = ref(0);
+
 const emits = defineEmits<{
-  change: [command: string | number | object];
+  change: [command: string];
 }>();
 
 // method 1
@@ -56,9 +50,18 @@ const iconPropsComputed = computed(() => {
   return restProps;
 });
 
-const handleCommand = (command: string | number | object) => {
-  emits('change', command);
+const handleCommand = (locale: LocaleItem) => {
+  // current.value = props.locales.findIndex((item) => item.name === command)
+  // current.value = index
+  emits('change', locale.name);
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+:deep(.el-dropdown-menu__item) {
+  &.active {
+    color: var(--el-dropdown-menuItem-hover-color);
+    background-color: var(--el-dropdown-menuItem-hover-fill);
+  }
+}
+</style>

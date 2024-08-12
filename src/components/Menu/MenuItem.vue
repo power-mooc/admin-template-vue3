@@ -1,18 +1,27 @@
 <template>
+  <!-- item start -->
   <!-- 单item -->
   <el-menu-item :index="getIndex(data)" :disabled="data.meta?.disabled" v-if="!data.meta?.icon">{{
-    data.meta?.title
+    $t(data.meta?.title || '')
   }}</el-menu-item>
   <template v-else>
     <!-- 折叠 -->
     <el-menu-item v-if="collapse" :index="getIndex(data)" :disabled="data.meta?.disabled">
-      <Iconify :icon="data.meta?.icon" :style="iconProps?.style" :class="iconProps.class"></Iconify>
-      <template #title>{{ data.meta?.title }}</template>
+      <Iconify
+        :icon="data.meta?.icon"
+        :style="iconProps?.style"
+        :class="iconProps?.class"
+      ></Iconify>
+      <template #title>{{ $t(data.meta?.title || '') }}</template>
     </el-menu-item>
     <!-- 侧栏 -->
     <el-menu-item v-else :index="getIndex(data)" :disabled="data.meta?.disabled">
-      <Iconify :icon="data.meta?.icon" :style="iconProps?.style" :class="iconProps.class"></Iconify>
-      <span>{{ data.meta?.title }} </span>
+      <Iconify
+        :icon="data.meta?.icon"
+        :style="iconProps?.style"
+        :class="iconProps?.class"
+      ></Iconify>
+      <span>{{ $t(data.meta?.title || '') }}</span>
     </el-menu-item>
     <!-- item end -->
   </template>
@@ -21,6 +30,8 @@
 <script setup lang="ts">
 import type { AppRouteMenuItem, IconOptions } from './types';
 import { useMenu } from './useMenu';
+import Iconify from '../Icon/Iconify.vue';
+import { $t } from '@/modules/i18n';
 
 interface MenuItemProps {
   data: AppRouteMenuItem;
@@ -28,6 +39,7 @@ interface MenuItemProps {
 }
 
 defineProps<MenuItemProps>();
+
 const iconProps = inject('iconProps') as IconOptions;
 
 const { getIndex } = useMenu();

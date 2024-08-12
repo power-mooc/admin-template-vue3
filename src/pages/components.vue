@@ -5,7 +5,7 @@
 <script setup>
 definePage({
   meta: {
-    title: '组件示例',
+    title: 'page.components',
     icon: 'mdi:apps'
   }
 });

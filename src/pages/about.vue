@@ -2,7 +2,7 @@
   <div class="about">
     <RouterLink to="/">home</RouterLink>
     <RouterLink to="/about">about</RouterLink>
-    <h1>This is an about page</h1>
+    <h1>{{ $t('test') }}</h1>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 import { RouterLink } from 'vue-router/auto';
 definePage({
   meta: {
-    title: '关于我们',
+    title: 'page.about',
     icon: 'mdi:user'
   }
 });

@@ -5,7 +5,7 @@
 <script setup>
 definePage({
   meta: {
-    title: '通知示例'
+    title: 'page.notice'
   }
 });
 </script>
