@@ -1,4 +1,4 @@
-import type { IconifyIcon } from '@iconify/vue';
+import type { IconifyIcon, IconProps } from '@iconify/vue';
 import type { CSSProperties } from 'vue';
 
 export type Component<T = any> =
@@ -17,8 +17,9 @@ export interface RouteMeta extends Record<string | number | symbol, unknown> {
   // 禁用
   disabled?: boolean;
 }
+
 export interface AppRouteMenuItem {
-  name: string;
+  name?: string | Symbol;
   meta?: RouteMeta;
   children?: AppRouteMenuItem[];
   alias?: string;
@@ -30,9 +31,18 @@ export interface IconOptions {
   style: CSSProperties;
   class: string;
 }
+
 export interface DropDownProps<T> {
   items: T[];
   iconProps?: Partial<IconProps>;
   iconClass?: string;
   // current?: number
 }
+
+export type EmitSelectType = [
+  index: string,
+  indexPath: string[],
+  item: MenuItemClicked,
+  routerResult?: Promise<void | NavigationFailure>
+];
+export type OpenCloseType = [index: string, indexPath: string[]];

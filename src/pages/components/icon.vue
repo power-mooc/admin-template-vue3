@@ -7,7 +7,7 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: 'pages.notice',
+    title: 'pages.icons',
     icon: 'mdi:apps'
   }
 });

@@ -1,10 +1,27 @@
 {
-  "hello": "你好",
-  "page": {
-    "index": "首页",
+  "components": {
+    "cancel": "取消",
+    "choose-icon": "选中的图标",
+    "copy-icon": "复制Icon组件",
+    "copy-icon-name": "复制Icon名称",
+    "copy-svg": "复制SVG图标",
+    "hide-text": "隐藏文字",
+    "icon-lists": "图标列表",
+    "icon-picker": "选择图标",
+    "show-text": "显示文字",
+    "submit": "确定",
+    "head-message": "消息通知"
+  },
+  "message": {
+    "copy-success": "复制成功"
+  },
+  "pages": {
     "about": "关于我们",
     "components": "组件示例",
-    "notice": "通知示例",
-    "noticeMessage": "消息通知"
+    "head-message": "消息通知",
+    "home": "首页",
+    "icons": "图标示例",
+    "notice": "通知组件",
+    "pick-icon": "图标选择器"
   }
 }

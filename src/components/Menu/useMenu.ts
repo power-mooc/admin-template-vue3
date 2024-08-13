@@ -54,6 +54,20 @@ export function useMenu() {
   function menuHasChildren(item: AppRouteMenuItem): boolean {
     return !item.meta?.hideMenu && Array.isArray(item.children) && item.children.length > 0;
   }
+  function getItem(menus: AppRouteMenuItem[], index: string) {
+    for (let i = 0; i < menus.length; i++) {
+      if (menus[i].meta?.key === index) {
+        return menus[i];
+      } else {
+        if (menus[i].children && Array.isArray(menus[i].children)) {
+          const item = getItem(menus[i].children!, index) as AppRouteMenuItem | undefined;
+          if (item) {
+            return item;
+          }
+        }
+      }
+    }
+  }
 
   return {
     generateMenuKeys,
@@ -61,6 +75,7 @@ export function useMenu() {
     getSubMenus,
     getTopMenus,
     getIndex,
-    menuHasChildren
+    menuHasChildren,
+    getItem
   };
 }

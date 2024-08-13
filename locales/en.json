@@ -1,10 +1,26 @@
 {
-  "hello": "hello",
-  "page": {
-    "index": "home",
-    "about": "about",
-    "components": "components",
-    "notice": "notice",
-    "noticeMessage": "noticeMessage"
+  "components": {
+    "cancel": "Cancel",
+    "choose-icon": "Selected Icon",
+    "copy-icon": "Copy Icon",
+    "copy-icon-name": "Copy Icon Name",
+    "copy-svg": "Copy SVG",
+    "hide-text": "Hide Text",
+    "icon-lists": "Icon Lists",
+    "icon-picker": "Pick Icon",
+    "show-text": "Show Text",
+    "submit": "Submit"
+  },
+  "message": {
+    "copy-success": "Copy Success!"
+  },
+  "pages": {
+    "about": "About Us",
+    "components": "Components",
+    "head-message": "Head Messages",
+    "home": "Home",
+    "icons": "Icons",
+    "notice": "Notice Component",
+    "pick-icon": "Icon Picker"
   }
 }

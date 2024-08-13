@@ -21,10 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import type { MenuProps as ElMenuProps, MenuItemClicked, SubMenuProps } from 'element-plus';
-import type { AppRouteMenuItem, IconOptions } from './types';
+import type { MenuProps as ElMenuProps, SubMenuProps } from 'element-plus';
+import type { AppRouteMenuItem, EmitSelectType, IconOptions, OpenCloseType } from './types';
 import { useMenu } from './useMenu';
-import type { NavigationFailure } from 'vue-router';
 
 interface MenuProps extends Partial<ElMenuProps> {
   data: AppRouteMenuItem[];
@@ -52,22 +51,14 @@ watch(
 
 provide('iconProps', iconProps);
 
-type EmitSelectType = [
-  index: string,
-  indexPath: string[],
-  item: MenuItemClicked,
-  routerResult?: Promise<void | NavigationFailure>
-];
-type OpenCloseType = [index: string, indexPath: string[]];
-
 const emits = defineEmits<{
-  select: EmitSelectType;
-  open: OpenCloseType;
-  close: OpenCloseType;
+  select: [item: AppRouteMenuItem];
+  open: [arg: OpenCloseType];
+  close: [arg: OpenCloseType];
 }>();
 
 const slots = useSlots();
-const { generateMenuKeys } = useMenu();
+const { generateMenuKeys, getItem } = useMenu();
 
 const fileredMenus = computed(() => generateMenuKeys(props.data));
 const menuProps = computed(() => {
@@ -77,15 +68,17 @@ const menuProps = computed(() => {
 });
 
 const handleSelect = (...args: EmitSelectType) => {
-  emits('select', ...args);
+  const [index] = args;
+
+  const item = getItem(fileredMenus.value, index);
+  if (item) emits('select', item);
 };
 const handleOpen = (...args: OpenCloseType) => {
-  emits('open', ...args);
+  emits('open', args);
 };
 const handleClose = (...args: OpenCloseType) => {
-  emits('close', ...args);
+  emits('close', args);
 };
-console.log(fileredMenus);
 </script>
 
 <style lang="scss">

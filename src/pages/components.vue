@@ -1,11 +1,11 @@
 <template>
-  <div></div>
+  <div><router-view></router-view></div>
 </template>
 
 <script setup>
 definePage({
   meta: {
-    title: 'page.components',
+    title: 'pages.components',
     icon: 'mdi:apps'
   }
 });

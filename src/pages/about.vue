@@ -2,15 +2,17 @@
   <div class="about">
     <RouterLink to="/">home</RouterLink>
     <RouterLink to="/about">about</RouterLink>
-    <h1>{{ $t('test') }}</h1>
+    <h1>This is an about page</h1>
+    <NetIcon url="//at.alicdn.com/t/font_1791095_hy6b9xbrdsk.css" type="qian"></NetIcon>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router/auto';
+
 definePage({
   meta: {
-    title: 'page.about',
+    title: 'pages.about',
     icon: 'mdi:user'
   }
 });

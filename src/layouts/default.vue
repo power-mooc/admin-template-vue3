@@ -7,7 +7,7 @@
         width: mixMenuWidth,
         backgroundColor: settings?.backgroundColor
       }"
-      class="h-full transition-width shrink-0"
+      class="h-full transition-width"
       v-if="settings?.mode !== 'top'"
     >
       <el-row class="h-full">
@@ -29,6 +29,7 @@
             :background-color="
               settings?.mode !== 'mixbar' ? settings?.backgroundColor : 'transparent'
             "
+            @select="handleSelect"
           ></Menu>
         </el-scrollbar>
         <!-- menu二级菜单：左侧菜单混合，顶部左侧菜单混合-->
@@ -39,12 +40,13 @@
             :data="getSubMenus(menus)"
             :collapse="localSettings.collapse"
             :background-color="settings?.backgroundColor"
+            @select="handleSelect"
           ></Menu>
         </el-scrollbar>
       </el-row>
     </div>
     <!-- content -->
-    <div class="w-full h-full">
+    <div class="flex-1 h-full">
       <!-- header: fullscreen, darkmode, theme, menu -->
       <Header
         v-model:collapse="localSettings.collapse"
@@ -62,23 +64,12 @@
           mode="horizontal"
           :data="settings?.mode === 'mix' ? getTopMenus(menus) : menus"
           :collapse="false"
+          @select="handleSelect"
         ></Menu>
       </Header>
       <!-- router-view -->
       <router-view></router-view>
     </div>
-    <!-- drawer -->
-    <el-drawer
-      direction="ltr"
-      class="w-full!"
-      :style="{ backgroundColor: settings?.backgroundColor }"
-      v-if="isMobile"
-      :model-value="!localSettings.collapse"
-      @close="localSettings.collapse = true"
-    >
-      <!-- menu: 左侧 左侧菜单混合 -->
-      <Menu text-color="#b8b8b8" :data="menus" :background-color="settings?.backgroundColor"></Menu>
-    </el-drawer>
   </div>
 </template>
 
@@ -97,8 +88,6 @@ interface ThemeSettingsOption extends HeaderProps {
   avatar: string;
   avatarMenu: DropDownMenuItem[];
 }
-
-const isMobile = ref(false);
 
 const router = useRouter();
 
@@ -125,7 +114,6 @@ const localSettings = reactive<ThemeSettingsOption>({
     menuWidth: 280
   } as ThemeSettingsProps
 });
-
 const { locales, username, avatar, avatarMenu } = toRefs(localSettings);
 
 function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
@@ -134,7 +122,7 @@ function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
   routes.forEach((route) => {
     let menuItem: AppRouteMenuItem = {
       path: route.path,
-      name: String(route.name),
+      name: route.name,
       meta: route.meta,
       alias: typeof route.redirect === 'string' ? route.redirect : undefined,
       component: route.component
@@ -167,49 +155,10 @@ const isFullIcons = computed(() =>
 
 // 混合左侧双菜单模式下的菜单宽度
 const mixMenuWidth = computed(() => {
-  if (isMobile.value) {
-    return 0;
-  }
   if (settings.value?.mode === 'mixbar' && isFullIcons.value) {
     return localSettings.collapse ? 'auto' : menuWidth.value + 'px';
   } else {
     return localSettings.collapse ? '64px' : menuWidth.value + 'px';
-  }
-});
-
-const tmpWidth = ref(0);
-const changeWidthFlag = ref(false);
-useResizeObserver(document.body, (entries) => {
-  const { width } = entries[0].contentRect;
-  if (tmpWidth.value === 0) {
-    tmpWidth.value = width;
-  }
-  if (width > tmpWidth.value) {
-    // 扩大屏幕
-    changeWidthFlag.value = width < 640;
-  } else {
-    // 缩小屏幕
-    changeWidthFlag.value = width > 1200;
-  }
-  if (width < 640 && !changeWidthFlag.value) {
-    localSettings.collapse = true;
-  }
-  if (width > 1200 && !changeWidthFlag.value) {
-    localSettings.collapse = false;
-  }
-  isMobile.value = width < 440;
-  tmpWidth.value = width;
-});
-
-onBeforeMount(() => {
-  // user-agent是否是移动端
-  if (
-    navigator.userAgent.match(
-      /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
-    )
-  ) {
-    isMobile.value = true;
-    localSettings.collapse = true;
   }
 });
 
@@ -220,7 +169,6 @@ const handleSettigsChange = (themeSettings: ThemeSettingsProps) => {
 const handleSelect = (item: AppRouteMenuItem) => {
   if (item && item.name) {
     router.push(item.name as string);
-    if (isMobile.value) localSettings.collapse = true;
   }
 };
 </script>
