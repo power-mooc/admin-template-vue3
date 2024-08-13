@@ -1,5 +1,5 @@
 <template>
-  <ul class="grid grid-cols-[repeat(auto-fill,minmax(1.825rem,1fr))] border-l border-t rounded">
+  <ul class="grid grid-cols-[repeat(auto-fill,minmax(7rem,1fr))] border-l border-t rounded">
     <li
       :class="[
         'border-r border-b flex flex-col justify-center items-center cursor-pointer',
@@ -24,53 +24,53 @@
 
 <script setup lang="ts">
 // iconify -> element plus
-import { loadIcons, Icon } from '@iconify/vue'
-import data from './icon-ep.json'
-import type { IconListType } from './types'
+import { loadIcons, Icon } from '@iconify/vue';
+import data from './icon-ep.json';
+import type { IconListProps } from './types';
 
-const modelValue = defineModel()
+const modelValue = defineModel();
 
-const props = withDefaults(defineProps<IconListType>(), {
+const props = withDefaults(defineProps<IconListProps>(), {
   iconData: () => data,
   collection: 'ep',
   iconClass: 'text-3xl',
-  itemClass: 'hover:bg-sky-100 w-1/8 py-4',
+  itemClass: 'hover:bg-sky-100  py-4',
   activeClass: ''
-})
+});
 
-const emits = defineEmits(['click'])
-const choose = ref(-1)
+const emits = defineEmits(['click']);
+const choose = ref(-1);
 
 onBeforeMount(async () => {
   props.iconData &&
     props.iconData.length &&
-    (await loadIcons(props.iconData.map((o) => `${props.collection}:${o}`)))
-})
+    (await loadIcons(props.iconData.map((o) => `${props.collection}:${o}`)));
+});
 
 function convertString(input: string): string {
-  const words = input.split('-')
+  const words = input.split('-');
   const capitalizedWords = words.map((word, index) => {
     if (index === 0) {
-      return capitalize(word)
+      return capitalize(word);
     } else {
-      return capitalize(word, true)
+      return capitalize(word, true);
     }
-  })
-  return capitalizedWords.join('')
+  });
+  return capitalizedWords.join('');
 }
 
 function capitalize(word: string, capitalizeFirstLetter = false): string {
   if (capitalizeFirstLetter) {
-    return word.charAt(0).toUpperCase() + word.slice(1)
+    return word.charAt(0).toUpperCase() + word.slice(1);
   } else {
-    return word.toLowerCase().replace(/(?:^|-)(\w)/g, (_, c) => c.toUpperCase())
+    return word.toLowerCase().replace(/(?:^|-)(\w)/g, (_, c) => c.toUpperCase());
   }
 }
 
 async function handleClick(i: string, num: number) {
-  choose.value = num
-  modelValue.value = i
-  emits('click', i)
+  choose.value = num;
+  modelValue.value = i;
+  emits('click', i);
 }
 </script>
 

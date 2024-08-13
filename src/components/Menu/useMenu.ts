@@ -42,7 +42,11 @@ export function useMenu() {
   // 获取子菜单
   function getSubMenus(menus: AppRouteMenuItem[]) {
     const route = useRoute();
-    const path = computed(() => route.path);
+    const path = computed(() => {
+      if (route.path === '/') return '/';
+      const rootPath = route.path.split('/')[1];
+      return rootPath ? `/${rootPath}` : '/';
+    });
     const filteredMenus = filterAndOrderMenus(menus);
     return filteredMenus.find((item) => item.path === path.value)?.children || [];
   }
